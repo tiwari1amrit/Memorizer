@@ -21,8 +21,6 @@ struct EmojiMemoryGameView: View {
                 viewModel.shuffle()
             }
         }
-        //            Spacer()
-        //            cardCountAdjuster
         .imageScale(.large)
         .padding()
     }
@@ -34,11 +32,10 @@ struct EmojiMemoryGameView: View {
         GridItem(.flexible(minimum: 100))
     ]
     
-    
     var cards: some View{
         LazyVGrid(columns: flexibleColumn, spacing: 0) {
-            ForEach(viewModel.cards.indices, id: \.self) { index in
-                CardView(viewModel.cards[index])
+            ForEach($viewModel.model.cards.indices, id: \.self) { index in
+                CardView($viewModel.model.cards[index])
                     .aspectRatio(2/3, contentMode: .fill)
                     .padding(4)
             }
@@ -49,13 +46,12 @@ struct EmojiMemoryGameView: View {
 
 
 
-
 struct CardView: View {
     
-    @State var card: MemoryGame<String>.Cards
+    @Binding var card: MemoryGame<String>.Cards
     
-    init(_ card: MemoryGame<String>.Cards) {
-        self.card = card
+    init(_ card: Binding<MemoryGame<String>.Cards>) {
+        self._card = card
     }
     
     var body: some View{

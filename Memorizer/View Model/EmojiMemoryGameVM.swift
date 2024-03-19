@@ -21,11 +21,11 @@ class EmojiMemoryGameVM: ObservableObject{
         }
     }
     
-    @Published private var model = createMemoryGame()
+    @Published var model = createMemoryGame()
     
-    var cards: Array<MemoryGame<String>.Cards>{
-        return model.cards
-    }
+//    var cards: Array<MemoryGame<String>.Cards>{
+//        return model.cards
+//    }
     
     // MARK: Intent
     func shuffle(){

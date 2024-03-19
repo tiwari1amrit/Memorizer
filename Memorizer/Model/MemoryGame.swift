@@ -8,7 +8,7 @@
 import Foundation
 
 struct MemoryGame<CardContent>{
-    private(set) var cards: Array<Cards>
+    var cards: Array<Cards>
     
     init(numberOfPairsCards: Int, cardContentFactory: (Int) -> CardContent){
         cards = []
@@ -16,7 +16,7 @@ struct MemoryGame<CardContent>{
         for index in 0..<max(2,numberOfPairsCards){
             let content = cardContentFactory(index)
             cards.append(Cards(content: content))
-            cards.append(Cards(content: content))
+//            cards.append(Cards(content: content))
         }
     }
     
@@ -26,7 +26,6 @@ struct MemoryGame<CardContent>{
 
     mutating func shuffle(){
         cards.shuffle()
-        print(cards)
     }
     
     struct Cards{
